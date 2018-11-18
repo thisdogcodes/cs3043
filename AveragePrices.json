@@ -1,0 +1,98 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v2.json",
+  "height": 750,
+  "width": 1000,
+  "title": "Average Organic Avocado Prices (2015-2018).",
+
+  
+  "data": {
+    "url": "https://raw.githubusercontent.com/thisdogcodes/cs3043/master/avocado.csv",
+      "format": {
+        "type": "csv"
+      }
+    },
+    "transform": [
+      {
+      "filter": {
+        "field": "type", "equal": "organic"
+        }
+      }
+    ],
+
+  "selection": {
+    "org": {
+      "type": "single",
+      "fields": ["region"],
+      "bind": {"input": "select", 
+      "options": [
+        "Albany",
+        "Atlanta",
+        "BaltimoreWashington",
+        "Boise",
+        "Boston",
+        "BuffaloRochester",
+        "Charlotte",
+        "Chicago",
+        "CincinnatiDayton",
+        "Columbus",
+        "DallasFtWorth",
+        "Denver",
+        "Detroit",
+        "GrandRapids",
+        "GreatLakes",
+        "HarrisburgScranton",
+        "HartfordSpringfield",
+        "Houston",
+        "Indianapolis",
+        "Jacksonville",
+        "LasVegas",
+        "LosAngeles",
+        "Louisville",
+        "MiamiFtLauderdale",
+        "Midsouth",
+        "Nashville",
+        "NewOrleansMobile",
+        "NewYork",
+        "Northeast",
+        "NorthernNewEngland",
+        "Orlando",
+        "Philadelphia",
+        "PhoenixTucson",
+        "Pittsburgh",
+        "Plains",
+        "RaleighGreensboro",
+        "RichmondNorfolk",
+        "Roanoke",
+        "Sacremento",
+        "SanDiego",
+        "SanFrancisco",
+        "Seattle",
+        "SouthCarolina",
+        "SouthCentral",
+        "Southeast",
+        "Spokane",
+        "StLouis",
+        "Syracuse",
+        "Tampa",
+        "West",
+        "WestTexNewMexico",
+        "Portland",
+        "California",
+        "TotalUS"
+        ]
+      }
+    }
+  },
+  "mark": "line",
+  "encoding": {
+    "x": {"field": "Date", "type": "temporal"},
+    "y": {"field": "AveragePrice", "type": "quantitative"},
+    "color": {
+      "condition": {
+        "selection": "org",
+        "field": "region", "type": "ordinal"
+      },
+      "value": 0
+    }
+  }
+}
